@@ -67,9 +67,7 @@ app.get('/passport-google',passportx.authenticate('google',{
 	scope:['email'],
 }));
 app.get('/github',passportx.authenticate('github'));
-app.get('/FaceBook',passportx.authenticate('facebook'));
 app.get('/instagramx',passportx.authenticate('instagram'));
-
 
 app.post("/signup-enter",Add_product.signup_enter_controller);
 
@@ -113,10 +111,7 @@ app.get('/instagram',
 
     res.redirect('/mypassword');
   });
-app.get('/fbmaster', 
-  (req,res)=>{
-    res.redirect('/mypassword');
-  });
+
 app.get('/gajjurocks',passportx.authenticate('github'),
   (req,res)=>{
     // Successful authentication, redirect home.

@@ -46,26 +46,6 @@ passport.use(new InstagramStrategy({
       return ck(null, profile);
   }
 ));
-passport.use(new FacebookStrategy({
-    clientID: "597170110693789",
-    clientSecret: "65674df1a0bc85e3772c09e34ab8d19f",
-    callbackURL: "https://xemzom.herokuapp.com/fbmaster",
-    scope:['email'],
-    profileFields: ['id', 'email', 'displayName', 'photos']
-
-  },
-  (accessToken, refreshToken, profile, cf)=>{
-    // User.findOrCreate({ googleId: profile.id },(err, user)=> {
-    //   console.log('Gajjar DArshit',user);
-    // });
-      exports.emailID=profile._json.email;
-    console.log(profile);
-      return cf(null, profile);
-  }
-));
-
-
-
 
 // const passport=require('passport');//import the file
 // const GoogleStrategy=require('passport-google-oauth20');//import the google auth 20
