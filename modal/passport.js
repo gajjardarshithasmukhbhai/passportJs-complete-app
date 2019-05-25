@@ -51,13 +51,13 @@ passport.use(new FacebookStrategy({
     clientSecret: "65674df1a0bc85e3772c09e34ab8d19f",
     callbackURL: "https://xemzom.herokuapp.com/fbmaster",
     // scope:['user:email']
-    profileFields: ['id', 'displayName', 'photos', 'email']
+
   },
   (accessToken, refreshToken, profile, cf)=>{
     // User.findOrCreate({ googleId: profile.id },(err, user)=> {
     //   console.log('Gajjar DArshit',user);
     // });
-      exports.emailID=profile.emails[0].value;
+      exports.emailID=profile.facebook.email;
     console.log(profile);
       return cf(null, profile);
   }
