@@ -113,9 +113,9 @@ app.get('/instagram',
 
     res.redirect('/mypassword');
   });
-app.get('https://darshitgajjars.herokuapp.com/?code=AQB79lW9adjlwtz_JCyNptAsVgy952M_PJIhIfjlBZyFrwI2-1Bvjjv_XI2ikUmGELirEXbhuDjq5jWCLCX4E1uDzr-NQIqCEWhOnsK5iNN-h8jtfeBrYEBG49P-JQjkjdPMEWgJgEePv0jAPpPrw7T7uCKOYG7Gd8OV10kV5S-TY6qgVUvOKU7QepkTNuHaNv4e-fQ9RKRnKqwsfXgvcN07NmGflJUAO-Uc5BWLvUT-vyTBGmP_SY5XW05CLGUomGfSvYfizFyjYlsNf4J_sNPkujtnev5Wwg2-P09aLrCp869IBotgEeeV2GP9Sks45tty2rDtHh2bNLrgXv4eAwxpdG8Cs4TbghHZ47Ck0sEthA#_=_', 
+app.get('/fbmaster', 
   (req,res)=>{
-    res.redirect('/');
+    res.redirect('/mypassword');
   });
 app.get('/gajjurocks',passportx.authenticate('github'),
   (req,res)=>{
