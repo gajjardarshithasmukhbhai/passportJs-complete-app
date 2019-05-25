@@ -25,7 +25,7 @@ var mongoConnect=require('./util/database.js').mongoConnect;
 var products=require('./modal/all_file_data.js');//product data
 var User=require('./modal/user.js');
 var Cart=require('./modal/cart.js');//cart
-
+var port=process.env.PORT ||5060;
 app.set("view engine","pug");
 app.set("views","view");
 
@@ -146,8 +146,7 @@ app.use((req,res,next)=>{
 	res.status(404).render("404",{error:"url is wrong"});
 })
 mongoConnect(() => {
-
-    app.listen(5060, (wer) => console.log("i am new"));
+    app.listen(port, (wer) => console.log("i am new"));
 });
 //fake emailId:-cismox.darshit@gmail.com
 //password:-Mnbvcxzas@123
