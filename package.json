@@ -1,5 +1,5 @@
 {
-  "name": "mvc_full_practice",
+  "name": "passportJs-complete-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -38,8 +38,5 @@
     "sequelize": "^4.43.0",
     "toastr": "^2.1.4",
     "xoauth2": "^1.2.0"
-  },
-  "engines": {
-    "node": "10.15.0",
   }
 }
