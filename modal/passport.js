@@ -50,7 +50,8 @@ passport.use(new FacebookStrategy({
     clientID: "597170110693789",
     clientSecret: "65674df1a0bc85e3772c09e34ab8d19f",
     callbackURL: "https://xemzom.herokuapp.com/fbmaster",
-    scope:['email']
+    scope:['email'],
+    profileFields: ['id', 'email', 'displayName', 'photos']
 
   },
   (accessToken, refreshToken, profile, cf)=>{
