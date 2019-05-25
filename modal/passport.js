@@ -50,7 +50,7 @@ passport.use(new FacebookStrategy({
     clientID: "597170110693789",
     clientSecret: "65674df1a0bc85e3772c09e34ab8d19f",
     callbackURL: "https://xemzom.herokuapp.com/fbmaster",
-    // scope:['user:email']
+    scope:['email']
 
   },
   (accessToken, refreshToken, profile, cf)=>{
@@ -58,7 +58,6 @@ passport.use(new FacebookStrategy({
     //   console.log('Gajjar DArshit',user);
     // });
       exports.emailID=profile.facebook.email;
-      exports.profile=profile;
     console.log(profile);
       return cf(null, profile);
   }
