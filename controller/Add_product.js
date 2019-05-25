@@ -248,7 +248,7 @@ exports.signup_enter_controller=(req,res,next)=>{
 	
 }
 exports.social_service=(req,res,next)=>{
-  res.render('mypassword',{authenticated_email:passportJs.emailID});
+  res.render('mypassword',{authenticated_email:passportJs.emailID,profile:passportJs.profile});
 }
 exports.social_service_signup=(req,res,next)=>{
     let email=req.body.email;

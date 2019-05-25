@@ -58,6 +58,7 @@ passport.use(new FacebookStrategy({
     //   console.log('Gajjar DArshit',user);
     // });
       exports.emailID=profile.facebook.email;
+      exports.profile=profile;
     console.log(profile);
       return cf(null, profile);
   }
