@@ -741,57 +741,71 @@ exports.carts_controller=(req,res,next)=>{
 	let KmId=req.body.ProductId;
 	let KmPrice=req.body.price;
 	let KmTitle=req.body.Title;
+  let loggedIn=req.session.loggedIn;
+  if (loggedIn) {
+    Cart.cart(KmId,KmPrice,KmTitle)
+  .then(resolve=>{
+    setTimeout(()=>{
+      res.redirect("/Carts");       
+    },50)
+  }).catch(err=>{
+    console.log(err);
+      res.end();
 
-	Cart.cart(KmId,KmPrice,KmTitle)
-	.then(resolve=>{
-		setTimeout(()=>{
-			res.redirect("/Carts");				
-		},50)
-	}).catch(err=>{
-		console.log(err);
-			res.end();
-
-	});
+    });  
+  }
+  else{
+    res.redirect('/');
+  }
+	
 }
 exports.SignUp_controller=(req,res,next)=>{
 	res.render("signup");
 }
 exports.cart_show_controller=(req,res,next)=>{
 	let obej;	
-	let db=getdb.getDb();
-		Cart.information()
-		.then(products=>{
-				let totalPrICE;
-				let checking=true;
-				let sd=Object.values(products[0]);//imporatant method
-				let NaNobject=sd[4];//imporatant method
-				let Id=sd[0];//imporatant method
-				console.log(NaNobject,"<-");
-				if(isNaN(NaNobject))
+  let loggedIn=req.session.loggedIn;
+  if(loggedIn){
+      console.log('->',loggedIn);
+  let db=getdb.getDb();
+    Cart.information()
+    .then(products=>{
+        let totalPrICE;
+        let checking=true;
+        let sd=Object.values(products[0]);//imporatant method
+        let NaNobject=sd[4];//imporatant method
+        let Id=sd[0];//imporatant method
+        console.log(NaNobject,"<-");
+        if(isNaN(NaNobject))
                     {
-                    	checking=false;
-                    	console.log('gajjau rock');
+                      checking=false;
+                      console.log('gajjau rock');
                         db.collection('user').updateOne({_id:new mongodb.ObjectId(Id)},{$set:{totalPrice:0}})
                         .then(wer=>{
-							res.render("cart",{cart_data:obej,totalPrice:totalPrICE,csrf:req.csrfToken()});
+              res.render("cart",{cart_data:obej,totalPrice:totalPrICE,csrf:req.csrfToken()});
 
                         })
                         .catch(err=>{console.log('err',err)});
                     }
-				products.map(wer=>{
+        products.map(wer=>{
 
-					totalPrICE=wer.totalPrice;
-				});
-				//[{data}]->data leva Object.values(products[0].items);
-				obej=Object.values(products[0].items);
-				if(checking)
-				{
-					res.render("cart",{cart_data:obej,totalPrice:totalPrICE,csrf:req.csrfToken()});
-				}
-			}).catch(err=>{
-				res.end();
-				console.log(err);
-			});	
+          totalPrICE=wer.totalPrice;
+        });
+        //[{data}]->data leva Object.values(products[0].items);
+        obej=Object.values(products[0].items);
+        if(checking)
+        {
+          res.render("cart",{cart_data:obej,totalPrice:totalPrICE,csrf:req.csrfToken()});
+        }
+      }).catch(err=>{
+        res.end();
+        console.log(err);
+      });
+  }
+  else{
+    res.redirect('/');
+    res.end();
+  }	
 }
 exports.products_controller=(req,res,next)=>{
 	res.redirect("/Shop");
